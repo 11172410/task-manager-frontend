@@ -2,6 +2,7 @@ import { Button, Label, TextInput, Textarea, Datepicker } from "flowbite-react";
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
+import { FaPlus } from "react-icons/fa";
 
 import React from "react";
 
@@ -59,6 +60,7 @@ function TaskForm() {
           pill
         >
           Create
+          <FaPlus className="ml-2 h-5 w-5" />
         </Button>
       </div>
     </form>
