@@ -52,7 +52,15 @@ function TaskForm() {
         <TimePicker required hourPlaceholder="00" minutePlaceholder="00" />
       </div>
 
-      <Button type="submit">Submit</Button>
+      <div className="flex justify-center">
+        <Button
+          type="submit"
+          className="bg-green-500 text-lg w-3xs w-[180px] text-center"
+          pill
+        >
+          Create
+        </Button>
+      </div>
     </form>
   );
 }
