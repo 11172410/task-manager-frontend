@@ -107,6 +107,7 @@ function TaskForm() {
         />
       </div>
 
+      {/* Error messages for title field */}
       {error.title?.map((message, i) => (
         <Alert color="failure" icon={HiInformationCircle} key={i}>
           {message}
@@ -144,6 +145,14 @@ function TaskForm() {
           onChange={handleDateChange}
         />
       </div>
+      {/* Error messages for due_date field to tell user they cannot choose a date in the past.
+      Component is set to have minimum date as the current date, so this error is in place incase
+      the minimum date prop is bypassed.*/}
+      {error.due_date?.map((message, i) => (
+        <Alert color="failure" icon={HiInformationCircle} key={i}>
+          {message}
+        </Alert>
+      ))}
 
       <div className="text-left">
         <div className="mb-2 block text-left">
