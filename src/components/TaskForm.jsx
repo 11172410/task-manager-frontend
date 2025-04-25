@@ -76,6 +76,8 @@ function TaskForm() {
         due_date: new Date(),
         due_time: "",
       });
+      // Clears any errors on form once submitted
+      setError({});
     } catch (error) {
       setError(error.response?.data);
       console.log(error);
@@ -170,6 +172,12 @@ function TaskForm() {
           onChange={handleTimeChange}
         />
       </div>
+      {/* Error messages for due_time field */}
+      {error.due_time?.map((message, i) => (
+        <Alert color="failure" icon={HiInformationCircle} key={i}>
+          {message}
+        </Alert>
+      ))}
 
       <div className="flex justify-center">
         <Button
