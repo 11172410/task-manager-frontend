@@ -13,7 +13,7 @@ const App = () => {
   return (
     <>
       <ToastContainer />
-      <h1 className="font-sans text-4xl font-bold tracking-wide">
+      <h1 className="font-sans text-4xl font-bold tracking-wide pt-4 pb-8">
         Task Manager
       </h1>
       <TaskForm />
