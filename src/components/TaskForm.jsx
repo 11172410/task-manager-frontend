@@ -64,6 +64,9 @@ function TaskForm() {
           id="title"
           type="text"
           placeholder="New task"
+          name="title"
+          value={title}
+          onChange={handleChange}
           required
           shadow
         />
@@ -74,7 +77,14 @@ function TaskForm() {
             Description
           </Label>
         </div>
-        <Textarea id="comment" placeholder="Description is optional" rows={4} />
+        <Textarea
+          id="comment"
+          placeholder="Description is optional"
+          rows={4}
+          name="description"
+          value={description}
+          onChange={handleChange}
+        />
       </div>
 
       <div>
@@ -84,7 +94,13 @@ function TaskForm() {
           </Label>
         </div>
         {/* Prevents user from picking a date previous to the current date */}
-        <Datepicker minDate={new Date()} title="Due date" />
+        <Datepicker
+          minDate={new Date()}
+          title="Due date"
+          name="due_date"
+          value={due_date}
+          onChange={handleChange}
+        />
       </div>
 
       <div className="text-left">
@@ -94,7 +110,14 @@ function TaskForm() {
           </Label>
         </div>
         {/* Prevents user from picking a date previous to the current date */}
-        <TimePicker required hourPlaceholder="00" minutePlaceholder="00" />
+        <TimePicker
+          required
+          hourPlaceholder="00"
+          minutePlaceholder="00"
+          name="due_time"
+          value={due_time}
+          onChange={handleChange}
+        />
       </div>
 
       <div className="flex justify-center">
