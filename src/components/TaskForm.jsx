@@ -5,6 +5,7 @@ import {
   Textarea,
   Datepicker,
   Alert,
+  Spinner,
 } from "flowbite-react";
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
@@ -185,7 +186,14 @@ function TaskForm() {
           className="bg-green-500 text-lg w-3xs w-[180px] text-center"
           pill
         >
-          Create
+          {" "}
+          {isCreating ? (
+            <>
+              <Spinner size="sm" className="me-3" light /> "Creating..."
+            </>
+          ) : (
+            "Create"
+          )}
           <FaPlus className="ml-2 h-5 w-5" />
         </Button>
       </div>
