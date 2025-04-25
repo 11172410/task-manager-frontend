@@ -49,7 +49,7 @@ function TaskForm() {
     e.preventDefault();
 
     // Format date into string object for DRF backend
-    const formattedDate = format(due_date, "yyyy-MM-dd");
+    const formattedDate = due_date.toISOString().split("T")[0];
 
     const formData = new FormData();
     formData.append("title", title);
