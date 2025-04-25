@@ -1,4 +1,5 @@
 import React from 'react'
+import TaskForm from './components/TaskForm'
 // import { Button } from "flowbite-react";
 // import api from './api/axiosDefaults';
 // import { useEffect } from 'react';
@@ -16,6 +17,7 @@ const App = () => {
   return (
     <>
       <h1 className='font-sans text-4xl font-bold tracking-wide'>Task Manager</h1>
+      <TaskForm />
     </>
   )
 }
