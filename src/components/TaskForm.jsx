@@ -40,14 +40,19 @@ function TaskForm() {
     try {
       setIsCreating(true);
       await api.post("/tasks/", formData);
+      console.log("Task created!");
       setIsCreating(false);
     } catch (error) {
       setError(error.response?.data);
+      console.log(error);
     }
   };
 
   return (
-    <form className="flex max-w-md flex-col gap-4 bg-neutral-100 border border-stone-200 p-8 rounded-md shadow-sm">
+    <form
+      className="flex max-w-md flex-col gap-4 bg-neutral-100 border border-stone-200 p-8 rounded-md shadow-sm"
+      onSubmit={handleSubmit}
+    >
       <h1 className="text-3xl">Create Task</h1>
       <div>
         <div className="mb-2 block text-left">
