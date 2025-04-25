@@ -6,6 +6,9 @@ import {
   Textarea,
   Datepicker,
 } from "flowbite-react";
+import TimePicker from "react-time-picker";
+import "react-time-picker/dist/TimePicker.css";
+import "react-clock/dist/Clock.css";
 
 import React from "react";
 
@@ -44,6 +47,16 @@ function TaskForm() {
         </div>
         {/* Prevents user from picking a date previous to the current date */}
         <Datepicker minDate={new Date()} title="Due date" />
+      </div>
+
+      <div className="text-left">
+        <div className="mb-2 block text-left">
+          <Label htmlFor="description" className="text-xl">
+            Time
+          </Label>
+        </div>
+        {/* Prevents user from picking a date previous to the current date */}
+        <TimePicker required hourPlaceholder="00" minutePlaceholder="00" />
       </div>
 
       <Button type="submit">Submit</Button>
