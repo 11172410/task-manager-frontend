@@ -1,11 +1,4 @@
-import {
-  Button,
-  Checkbox,
-  Label,
-  TextInput,
-  Textarea,
-  Datepicker,
-} from "flowbite-react";
+import { Button, Label, TextInput, Textarea, Datepicker } from "flowbite-react";
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
@@ -14,7 +7,7 @@ import React from "react";
 
 function TaskForm() {
   return (
-    <form className="flex max-w-md flex-col gap-4">
+    <form className="flex max-w-md flex-col gap-4 bg-neutral-100 border border-stone-200 p-8 rounded-md shadow-sm">
       <h1 className="text-3xl">Create Task</h1>
       <div>
         <div className="mb-2 block text-left">
