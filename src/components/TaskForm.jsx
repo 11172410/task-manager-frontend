@@ -6,6 +6,7 @@ import { FaPlus } from "react-icons/fa";
 import api from "../api/axiosDefaults";
 
 import React, { useState } from "react";
+import { format } from "prettier";
 
 function TaskForm() {
   const [isCreating, setIsCreating] = useState(false);
@@ -39,10 +40,13 @@ function TaskForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Format date into string object for DRF backend
+    const formattedDate = format(due_date, "yyyy-MM-dd");
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("due_date", due_date);
+    formData.append("due_date", formattedDate);
     formData.append("due_time", due_time);
 
     try {
@@ -53,6 +57,7 @@ function TaskForm() {
     } catch (error) {
       setError(error.response?.data);
       console.log(error);
+      setIsCreating(false);
     }
   };
 
