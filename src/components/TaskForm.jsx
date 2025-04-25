@@ -1,12 +1,19 @@
-import { Button, Label, TextInput, Textarea, Datepicker } from "flowbite-react";
+import {
+  Button,
+  Label,
+  TextInput,
+  Textarea,
+  Datepicker,
+  Alert,
+} from "flowbite-react";
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import { FaPlus } from "react-icons/fa";
+import { HiInformationCircle } from "react-icons/hi";
 import api from "../api/axiosDefaults";
 
 import React, { useState } from "react";
-import { format } from "prettier";
 
 function TaskForm() {
   const [isCreating, setIsCreating] = useState(false);
@@ -95,10 +102,17 @@ function TaskForm() {
           name="title"
           value={title}
           onChange={handleChange}
-          required
+          // required
           shadow
         />
       </div>
+
+      {error.title?.map((message, i) => (
+        <Alert color="failure" icon={HiInformationCircle} key={i}>
+          {message}
+        </Alert>
+      ))}
+
       <div>
         <div className="mb-2 block text-left">
           <Label htmlFor="description" className="text-xl">
@@ -139,7 +153,7 @@ function TaskForm() {
         </div>
         {/* Prevents user from picking a date previous to the current date */}
         <TimePicker
-          required
+          // required
           hourPlaceholder="00"
           minutePlaceholder="00"
           name="due_time"
