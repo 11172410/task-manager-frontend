@@ -3,6 +3,7 @@ import { Button } from "flowbite-react";
 import api from './api/axiosDefaults';
 import { useEffect } from 'react';
 import LoadingSpinner from './components/LoadingSpinner';
+import DeleteModal from './components/DeleteModal';
 
 const App = () => {
   // Quick check that api fetching is working
@@ -14,7 +15,7 @@ const App = () => {
   
   return (
     <>
-      <LoadingSpinner />
+      <DeleteModal />
     </>
   )
 }
