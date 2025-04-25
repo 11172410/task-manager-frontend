@@ -112,7 +112,7 @@ function TaskForm() {
           title="Due date"
           name="due_date"
           value={due_date}
-          onChange={handleChange}
+          onChange={handleDateChange}
         />
       </div>
 
