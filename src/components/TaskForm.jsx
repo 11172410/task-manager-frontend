@@ -13,7 +13,7 @@ function TaskForm() {
   const [taskData, setTaskData] = useState({
     title: "",
     description: "",
-    due_date: "",
+    due_date: new Date(),
     due_time: "",
   });
   const { title, description, due_date, due_time } = taskData;
@@ -25,6 +25,14 @@ function TaskForm() {
     setTaskData((prevTaskData) => ({
       ...prevTaskData,
       [name]: value,
+    }));
+  };
+
+  // Separate handler for date picker as it expects a date object rather than a string
+  const handleDateChange = (date) => {
+    setTaskData((prevTaskData) => ({
+      ...prevTaskData,
+      due_date: date,
     }));
   };
 
