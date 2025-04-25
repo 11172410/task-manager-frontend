@@ -42,7 +42,8 @@ function TaskForm() {
             Due Date
           </Label>
         </div>
-        <Datepicker minDate={new Date()} />
+        {/* Prevents user from picking a date previous to the current date */}
+        <Datepicker minDate={new Date()} title="Due date" />
       </div>
 
       <Button type="submit">Submit</Button>
