@@ -1,4 +1,11 @@
-import { Button, Checkbox, Label, TextInput, Textarea } from "flowbite-react";
+import {
+  Button,
+  Checkbox,
+  Label,
+  TextInput,
+  Textarea,
+  Datepicker,
+} from "flowbite-react";
 
 import React from "react";
 
@@ -29,10 +36,15 @@ function TaskForm() {
         <Textarea id="comment" placeholder="Description is optional" rows={4} />
       </div>
 
-      <div className="flex items-center gap-2">
-        <Checkbox id="remember" />
-        <Label htmlFor="remember">Remember me</Label>
+      <div>
+        <div className="mb-2 block text-left">
+          <Label htmlFor="description" className="text-xl">
+            Due Date
+          </Label>
+        </div>
+        <Datepicker minDate={new Date()} />
       </div>
+
       <Button type="submit">Submit</Button>
     </form>
   );
