@@ -15,6 +15,7 @@ import { HiInformationCircle } from "react-icons/hi";
 import api from "../api/axiosDefaults";
 
 import React, { useState } from "react";
+import { SuccessToast } from "../functions/toasts";
 
 function TaskForm() {
   const [isCreating, setIsCreating] = useState(false);
@@ -68,7 +69,7 @@ function TaskForm() {
     try {
       setIsCreating(true);
       await api.post("/tasks/", formData);
-      console.log("Task created!");
+      SuccessToast("Task created!");
       setIsCreating(false);
       // Clears form once task is created
       setTaskData({
