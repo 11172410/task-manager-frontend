@@ -22,10 +22,10 @@ function TaskForm() {
   // Allows changing of input fields values by creating a copy
   // of the previous data before updating
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    // const { name, value } = e.target;
     setTaskData((prevTaskData) => ({
       ...prevTaskData,
-      [name]: value,
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -34,6 +34,14 @@ function TaskForm() {
     setTaskData((prevTaskData) => ({
       ...prevTaskData,
       due_date: date,
+    }));
+  };
+
+  // Separate handler for time picker component
+  const handleTimeChange = (value) => {
+    setTaskData((prevTaskData) => ({
+      ...prevTaskData,
+      due_time: value,
     }));
   };
 
@@ -129,7 +137,7 @@ function TaskForm() {
           minutePlaceholder="00"
           name="due_time"
           value={due_time}
-          onChange={handleChange}
+          onChange={handleTimeChange}
         />
       </div>
 
