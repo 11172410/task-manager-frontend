@@ -62,6 +62,13 @@ function TaskForm() {
       await api.post("/tasks/", formData);
       console.log("Task created!");
       setIsCreating(false);
+      // Clears form once task is created
+      setTaskData({
+        title: "",
+        description: "",
+        due_date: new Date(),
+        due_time: "",
+      });
     } catch (error) {
       setError(error.response?.data);
       console.log(error);
