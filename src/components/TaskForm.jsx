@@ -3,10 +3,49 @@ import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import { FaPlus } from "react-icons/fa";
+import api from "../api/axiosDefaults";
 
-import React from "react";
+import React, { useState } from "react";
 
 function TaskForm() {
+  const [isCreating, setIsCreating] = useState(false);
+  const [error, setError] = useState({});
+  const [taskData, setTaskData] = useState({
+    title: "",
+    description: "",
+    due_date: "",
+    due_time: "",
+  });
+  const { title, description, due_date, due_time } = taskData;
+
+  // Allows changing of input fields values by creating a copy
+  // of the previous data before updating
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setTaskData((prevTaskData) => ({
+      ...prevTaskData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("due_date", due_date);
+    formData.append("due_time", due_time);
+
+    try {
+      setIsCreating(true);
+      await api.post("/tasks/", formData);
+      setIsCreating(false);
+    } catch (error) {
+      setError(error.response?.data);
+    }
+  };
+
   return (
     <form className="flex max-w-md flex-col gap-4 bg-neutral-100 border border-stone-200 p-8 rounded-md shadow-sm">
       <h1 className="text-3xl">Create Task</h1>
