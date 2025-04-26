@@ -6,7 +6,7 @@ import api from "../api/axiosDefaults";
 import { formatDate } from "../functions/dateFormats";
 import LoadingSpinner from "./LoadingSpinner";
 
-function TaskList({ className = "", onTaskClick }) {
+function TaskList({ className = "", onTaskClick, refreshTrigger }) {
   const [taskList, setTaskList] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -26,10 +26,9 @@ function TaskList({ className = "", onTaskClick }) {
 
     setIsLoaded(false);
     handleMount();
-  }, []);
+  }, [refreshTrigger]);
 
   return (
-    // {isLoaded ? () : ()}
     <div className={`${className}`}>
       <Card className="max-w-sm scroll-smooth max-h-[581px] overflow-auto">
         <h5 className="text-3xl font-medium leading-none text-gray-900">
