@@ -1,4 +1,4 @@
-import { Button, Card } from "flowbite-react";
+import { Button, Card, Checkbox, Label } from "flowbite-react";
 
 import React, { useState, useEffect } from "react";
 import api from "../api/axiosDefaults";
@@ -15,6 +15,8 @@ function TaskDetail({ className = "", taskId }) {
   });
   const [isLoaded, setIsLoaded] = useState(false);
   const { title, description, due_date, due_time, status } = taskDetail;
+
+  const formattedDate = formatDate(due_date);
 
   useEffect(() => {
     if (taskId) {
@@ -34,7 +36,25 @@ function TaskDetail({ className = "", taskId }) {
     setIsLoaded(false);
   }, [taskId]);
 
-  const formattedDate = formatDate(due_date);
+  const handleCheckboxChange = async () => {
+    const newStatus = !status;
+    setTaskDetail((prevDetail) => ({
+      ...prevDetail,
+      status: newStatus,
+    }));
+    try {
+      await api.patch(`/tasks/${taskId}`, {
+        status: newStatus,
+      });
+    } catch (error) {
+      console.log("Error updating status:", error);
+      // If API fails to update task, revert UI
+      setTaskDetail((prevDetail) => ({
+        ...prevDetail,
+        status: !newStatus,
+      }));
+    }
+  };
 
   return (
     <Card className="max-w-sm">
