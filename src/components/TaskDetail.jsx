@@ -29,7 +29,6 @@ function TaskDetail({ className = "", taskId }) {
           const { data } = await api.get(`/tasks/${taskId}/`);
           setTaskDetail(data);
           setIsLoaded(true);
-          console.log(data);
         } catch (error) {
           console.log(error);
         }
