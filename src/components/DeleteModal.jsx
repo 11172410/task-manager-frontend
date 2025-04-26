@@ -1,14 +1,19 @@
 import { Modal, ModalBody, Button, ModalHeader } from "flowbite-react";
 import { useState } from "react";
 
-import React from 'react'
+import React from "react";
 
-function DeleteModal({show, handleClose}) {
-    const [openModal, setOpenModal] = useState(false);
+function DeleteModal({ show, handleClose, handleDelete }) {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <>
-    <Button onClick={() => setOpenModal(true)}>Toggle modal</Button>
-        <Modal show={openModal} size="md" onClose={()=>setOpenModal(false)} popup>
+      <Button onClick={() => setOpenModal(true)}>Toggle modal</Button>
+      <Modal
+        show={openModal}
+        size="md"
+        onClose={() => setOpenModal(false)}
+        popup
+      >
         <ModalHeader />
         <ModalBody>
           <div className="text-center">
@@ -27,7 +32,7 @@ function DeleteModal({show, handleClose}) {
         </ModalBody>
       </Modal>
     </>
-  )
+  );
 }
 
-export default DeleteModal
+export default DeleteModal;
