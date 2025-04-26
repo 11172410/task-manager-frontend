@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TaskForm from "./components/TaskForm";
 import { ToastContainer } from "react-toastify";
 import TaskList from "./components/TaskList";
@@ -11,6 +11,9 @@ const App = () => {
   //     .then(res => console.log('API response:', res.data))
   //     .catch(err => console.error('Fetch error:', err));
   // }, []);
+
+  // Stores id of selected task from task list to pass to taskDetail component
+  const [selectedTaskId, setSelectedTaskId] = useState(null);
 
   return (
     <>
