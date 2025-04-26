@@ -50,13 +50,25 @@ function TaskList({ className = "", onTaskClick }) {
                     <div className="flex items-center space-x-4">
                       <div className="shrink-0"></div>
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-lg font-medium text-gray-900">
-                          {task.title}{" "}
+                        <p className="truncate text-lg font-medium text-gray-900 flex items-center gap-2">
+                          <span
+                            className={`${task.status ? "text-gray-400 line-through" : ""}`}
+                          >
+                            {task.title}
+                          </span>
+
                           {/* Shows overdue label when task is overdue and not completed */}
                           {!task.status && isOverdue && (
                             <span className="flex items-center font-light text-base text-red-500 gap-1">
                               <RiErrorWarningLine />
                               Overdue
+                            </span>
+                          )}
+
+                          {/* Shows completed label */}
+                          {task.status && (
+                            <span className="text-base text-green-500">
+                              Completed
                             </span>
                           )}
                         </p>
