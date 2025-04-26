@@ -68,6 +68,10 @@ function TaskDetail({ className = "", taskId }) {
       await api.delete(`/tasks/${taskId}/`);
       SuccessToast("Task deleted!");
       setShowDeleteModal(false);
+      // Will refresh page after deletion so task list is updated
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
       console.log(error);
     }
