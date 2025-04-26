@@ -2,6 +2,7 @@ import { Button, Card } from "flowbite-react";
 
 import React, { useState, useEffect } from "react";
 import api from "../api/axiosDefaults";
+import { formatDate } from "../functions/dateFormats";
 
 function TaskDetail({ className = "" }) {
   const [taskDetail, setTaskDetail] = useState({
@@ -29,6 +30,8 @@ function TaskDetail({ className = "" }) {
     handleMount();
   }, []);
 
+  const formattedDate = formatDate(due_date);
+
   return (
     <Card className="max-w-sm">
       <h5 className="text-2xl font-bold tracking-tight text-gray-900">
@@ -38,7 +41,7 @@ function TaskDetail({ className = "" }) {
         {description ? description : "No description available"}
       </p>
       <p>
-        {due_date} {due_time}
+        {formattedDate} {due_time}
       </p>
       <p> {status ? "Completed" : "Incomplete"} </p>
       <div className="flex flex-row">
