@@ -43,14 +43,22 @@ function TaskDetail({ className = "", taskId }) {
           <h5 className="text-2xl font-bold tracking-tight text-gray-900">
             {title}
           </h5>
-          <p className="font-normal text-gray-700">
+          <p
+            className={`font-normal ${description ? "text-gray-700" : "text-gray-400"}`}
+          >
             {description ? description : "No description available"}
           </p>
           <p>
-            {formattedDate} {due_time}
+            <span className="font-bold">Due: </span>
+            <span>
+              {formattedDate} | {due_time}
+            </span>
           </p>
-          <p> {status ? "Completed" : "Incomplete"} </p>
-          <div className="flex flex-row">
+          <p className={`${status ? "text-green-500" : "text-red-500"}`}>
+            {" "}
+            {status ? "Completed" : "Incomplete"}{" "}
+          </p>
+          <div className="flex flex-row gap-2 justify-evenly">
             <Button color="alternative">Edit</Button>
             <Button color="red">Delete</Button>
           </div>
