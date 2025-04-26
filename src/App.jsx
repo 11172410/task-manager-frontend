@@ -24,7 +24,7 @@ const App = () => {
 
       <div className="flex flex-row gap-8 justify-center-safe">
         <TaskForm className="w-1/3" />
-        <TaskList className="w-1/3" />
+        <TaskList className="w-1/3" onTaskClick={setSelectedTaskId} />
         <TaskDetail className="w-1/3" />
       </div>
     </>
