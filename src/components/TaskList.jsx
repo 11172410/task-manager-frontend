@@ -3,6 +3,7 @@ import {
   AccordionContent,
   AccordionPanel,
   AccordionTitle,
+  Button,
 } from "flowbite-react";
 
 import React, { useState, useEffect } from "react";
@@ -16,7 +17,6 @@ function TaskList({ className = "" }) {
       try {
         const { data } = await api.get("/tasks/");
         setTaskList(data);
-        console.log(data);
         // setIsLoaded(true);
       } catch (error) {
         console.log("there was an error", error);
@@ -30,29 +30,21 @@ function TaskList({ className = "" }) {
   return (
     <div className={` ${className}`}>
       <h2 className="text-4xl pb-2">Task List</h2>
+
       <Accordion collapseAll className="">
-        <AccordionPanel>
-          <AccordionTitle>What is Flowbite?</AccordionTitle>
-          <AccordionContent>
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              Flowbite is an open-source library of interactive components built
-              on top of Tailwind CSS including buttons, dropdowns, modals,
-              navbars, and more.
-            </p>
-            <p className="text-gray-500 dark:text-gray-400">
-              Check out this guide to learn how to&nbsp;
-              <a
-                href="https://flowbite.com/docs/getting-started/introduction/"
-                className="text-cyan-600 hover:underline dark:text-cyan-500"
-              >
-                get started&nbsp;
-              </a>
-              and start developing websites even faster with components on top
-              of Tailwind CSS.
-            </p>
-          </AccordionContent>
-        </AccordionPanel>
-        <AccordionPanel>
+        {taskList.map((task) => (
+          <AccordionPanel key={task.id}>
+            <AccordionTitle>
+              {task.title}
+              <br /> {task.due_date} {task.due_time}
+            </AccordionTitle>
+            <AccordionContent>
+              <Button>View task</Button>
+            </AccordionContent>
+          </AccordionPanel>
+        ))}
+
+        {/* <AccordionPanel>
           <AccordionTitle>Is there a Figma file available?</AccordionTitle>
           <AccordionContent>
             <p className="mb-2 text-gray-500 dark:text-gray-400">
@@ -113,7 +105,7 @@ function TaskList({ className = "" }) {
               </li>
             </ul>
           </AccordionContent>
-        </AccordionPanel>
+        </AccordionPanel> */}
       </Accordion>
     </div>
   );
