@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import api from "../api/axiosDefaults";
 import { formatDate } from "../functions/dateFormats";
 import LoadingSpinner from "./LoadingSpinner";
+import { SuccessToast } from "../functions/toasts";
 
 function TaskDetail({ className = "", taskId }) {
   const [taskDetail, setTaskDetail] = useState({
@@ -57,6 +58,15 @@ function TaskDetail({ className = "", taskId }) {
         ...prevDetail,
         status: !newStatus,
       }));
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await api.delete(`/tasks/${taskId}/`);
+      SuccessToast("Task deleted!");
+    } catch (error) {
+      console.log(error);
     }
   };
 
