@@ -48,6 +48,7 @@ function TaskList({ className = "" }) {
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-lg font-medium text-gray-900">
                         {task.title}{" "}
+                        {/* Shows overdue label when task is overdue and not completed */}
                         {!task.status && isOverdue && (
                           <span className="flex items-center font-light text-base text-red-500 gap-1">
                             <RiErrorWarningLine />
