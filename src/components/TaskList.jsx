@@ -31,7 +31,7 @@ function TaskList({ className = "" }) {
 
   return (
     <div className={` ${className}`}>
-      <Card className="max-w-sm">
+      <Card className="max-w-sm scroll-smooth max-h-[581px] overflow-auto">
         <h5 className="text-3xl font-medium leading-none text-gray-900">
           Task List
         </h5>
