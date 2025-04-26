@@ -73,7 +73,9 @@ function TaskList({ className = "" }) {
               })}
             </ol>
           ) : (
-            <LoadingSpinner />
+            <div className="flex justify-center items-center h-full py-10">
+              <LoadingSpinner />
+            </div>
           )}
         </div>
       </Card>

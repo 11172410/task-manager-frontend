@@ -1,11 +1,9 @@
 import { Spinner } from "flowbite-react";
 
-import React from 'react'
+import React from "react";
 
-function LoadingSpinner() {
-  return (
-    <Spinner color="info" aria-label="Loading..." />
-  )
+function LoadingSpinner({ className = "" }) {
+  return <Spinner color="info" aria-label="Loading..." />;
 }
 
-export default LoadingSpinner
+export default LoadingSpinner;
