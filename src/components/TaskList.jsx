@@ -5,9 +5,28 @@ import {
   AccordionTitle,
 } from "flowbite-react";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import api from "../api/axiosDefaults";
 
 function TaskList({ className = "" }) {
+  const [taskList, setTaskList] = useState({ results: [] });
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await api.get("/tasks/");
+        setTaskList(data);
+        console.log(data);
+        // setIsLoaded(true);
+      } catch (error) {
+        console.log("there was an error", error);
+      }
+    };
+
+    // setIsLoaded(false);
+    handleMount();
+  }, []);
+
   return (
     <div className={` ${className}`}>
       <h2 className="text-4xl pb-2">Task List</h2>
