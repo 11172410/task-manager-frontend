@@ -2,6 +2,7 @@ import React from "react";
 import TaskForm from "./components/TaskForm";
 import { ToastContainer } from "react-toastify";
 import TaskList from "./components/TaskList";
+import TaskDetail from "./components/TaskDetail";
 
 const App = () => {
   // Quick check that api fetching is working
@@ -21,6 +22,7 @@ const App = () => {
       <div className="flex flex-row gap-8 justify-center-safe">
         <TaskForm className="w-1/3" />
         <TaskList className="w-1/3" />
+        <TaskDetail />
       </div>
     </>
   );
