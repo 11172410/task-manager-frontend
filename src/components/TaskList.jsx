@@ -53,7 +53,7 @@ function TaskList({ className = "" }) {
                       </p>
                     </div>
                     <div className="inline-flex items-center">
-                      <Button>View</Button>
+                      <Button className="bg-blue-500">View</Button>
                     </div>
                   </div>
                 </li>
