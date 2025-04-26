@@ -31,10 +31,12 @@ function TaskList({ className = "" }) {
 
   return (
     <div className={` ${className}`}>
-      <h2 className="text-4xl pb-2">Task List</h2>
       <Card className="max-w-sm">
+        <h5 className="text-3xl font-medium leading-none text-gray-900">
+          Task List
+        </h5>
         <div className="flow-root text-left">
-          <ol className="divide-y divide-gray-200 dark:divide-gray-700">
+          <ol className="divide-y divide-gray-200">
             {taskList.map((task) => {
               // Takes due date and formats it before displaying in each task
               const formattedDate = formatDate(task.due_date);
