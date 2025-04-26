@@ -1,6 +1,7 @@
 import React from "react";
 import TaskForm from "./components/TaskForm";
 import { ToastContainer } from "react-toastify";
+import TaskList from "./components/TaskList";
 
 const App = () => {
   // Quick check that api fetching is working
@@ -17,6 +18,7 @@ const App = () => {
         Task Manager
       </h1>
       <TaskForm />
+      <TaskList />
     </>
   );
 };
