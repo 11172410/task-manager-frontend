@@ -63,6 +63,7 @@ function TaskForm() {
     // Format date into string object for DRF backend
     const formattedDate = due_date.toISOString().split("T")[0];
 
+    // Creates new form data to send to API in POST method
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
