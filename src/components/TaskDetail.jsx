@@ -83,15 +83,12 @@ function TaskDetail({ className = "", taskId }) {
             />
             <label
               htmlFor="task-status"
-              className="text-sm font-medium text-gray-700"
+              className={`${status ? "text-green-500" : "text-gray-700"} text-sm font-medium`}
             >
               {status ? "Completed" : "Mark as Completed"}
             </label>
           </div>
-          <p className={`${status ? "text-green-500" : "text-red-500"}`}>
-            {" "}
-            {status ? "Completed" : "Incomplete"}{" "}
-          </p>
+
           <div className="flex flex-row gap-2 justify-evenly">
             <Button color="alternative">Edit</Button>
             <Button color="red">Delete</Button>
