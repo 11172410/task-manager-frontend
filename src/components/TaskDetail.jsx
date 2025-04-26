@@ -3,7 +3,7 @@ import { Button, Card } from "flowbite-react";
 import React, { useState, useEffect } from "react";
 import api from "../api/axiosDefaults";
 
-function TaskDetail() {
+function TaskDetail({ className = "" }) {
   const [taskDetail, setTaskDetail] = useState({
     title: "",
     description: "",
@@ -30,7 +30,7 @@ function TaskDetail() {
   }, []);
 
   return (
-    <Card className="max-w-[300px]">
+    <Card className="max-w-sm">
       <h5 className="text-2xl font-bold tracking-tight text-gray-900">
         {title}
       </h5>
