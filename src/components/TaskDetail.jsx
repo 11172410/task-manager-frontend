@@ -118,7 +118,7 @@ function TaskDetail({ className = "", taskId }) {
 
             <div className="flex flex-row gap-2 justify-evenly">
               <Button color="alternative">Edit</Button>
-              <Button color="red" onClick={showModal}>
+              <Button color="red" onClick={() => setShowDeleteModal(true)}>
                 Delete
               </Button>
             </div>
@@ -129,7 +129,7 @@ function TaskDetail({ className = "", taskId }) {
       </Card>
 
       <DeleteModal
-        show={showModal}
+        show={showDeleteModal}
         handleClose={() => setShowDeleteModal(false)}
         handleDelete={handleDelete}
       />

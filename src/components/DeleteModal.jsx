@@ -1,19 +1,11 @@
 import { Modal, ModalBody, Button, ModalHeader } from "flowbite-react";
-import { useState } from "react";
 
 import React from "react";
 
 function DeleteModal({ show, handleClose, handleDelete }) {
-  const [openModal, setOpenModal] = useState(false);
   return (
     <>
-      <Button onClick={() => setOpenModal(true)}>Toggle modal</Button>
-      <Modal
-        show={openModal}
-        size="md"
-        onClose={() => setOpenModal(false)}
-        popup
-      >
+      <Modal show={show} size="md" onClose={handleClose} popup>
         <ModalHeader />
         <ModalBody>
           <div className="text-center">
@@ -21,10 +13,10 @@ function DeleteModal({ show, handleClose, handleDelete }) {
               Are you sure you want to delete this task?
             </h3>
             <div className="flex justify-center gap-4">
-              <Button color="red" onClick={() => setOpenModal(false)}>
+              <Button color="red" onClick={handleDelete}>
                 {"Yes, I'm sure"}
               </Button>
-              <Button color="gray" onClick={() => setOpenModal(false)}>
+              <Button color="gray" onClick={handleClose}>
                 No, cancel
               </Button>
             </div>
