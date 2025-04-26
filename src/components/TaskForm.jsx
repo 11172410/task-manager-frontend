@@ -1,3 +1,10 @@
+import api from "../api/axiosDefaults";
+import React, { useState } from "react";
+
+// Custom function import
+import { SuccessToast } from "../functions/toasts";
+
+// Styling and Flowbite imports
 import {
   Button,
   Label,
@@ -12,10 +19,6 @@ import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import { FaPlus } from "react-icons/fa";
 import { HiInformationCircle } from "react-icons/hi";
-import api from "../api/axiosDefaults";
-
-import React, { useState } from "react";
-import { SuccessToast } from "../functions/toasts";
 
 function TaskForm() {
   const [isCreating, setIsCreating] = useState(false);
