@@ -19,7 +19,7 @@ const App = () => {
       </h1>
 
       <div className="flex flex-row gap-8 justify-center-safe">
-        <TaskForm className="w-64" />
+        <TaskForm className="w-[500px]" />
         <TaskList />
       </div>
     </>

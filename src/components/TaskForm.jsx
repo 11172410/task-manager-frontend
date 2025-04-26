@@ -20,7 +20,7 @@ import "react-clock/dist/Clock.css";
 import { FaPlus } from "react-icons/fa";
 import { HiInformationCircle } from "react-icons/hi";
 
-function TaskForm() {
+function TaskForm({ className = "" }) {
   const [isCreating, setIsCreating] = useState(false);
   const [error, setError] = useState({});
   const [taskData, setTaskData] = useState({
@@ -93,7 +93,7 @@ function TaskForm() {
 
   return (
     <form
-      className="flex max-w-md flex-col gap-4 bg-neutral-100 border border-stone-200 p-8 rounded-md shadow-sm"
+      className={`flex max-w-md flex-col gap-4 bg-neutral-100 border border-stone-200 p-8 rounded-md shadow-sm ${className}`}
       onSubmit={handleSubmit}
     >
       <h1 className="text-3xl">Create Task</h1>
