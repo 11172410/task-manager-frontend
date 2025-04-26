@@ -4,6 +4,7 @@ import {
   AccordionPanel,
   AccordionTitle,
   Button,
+  Card,
 } from "flowbite-react";
 
 import React, { useState, useEffect } from "react";
@@ -30,83 +31,31 @@ function TaskList({ className = "" }) {
   return (
     <div className={` ${className}`}>
       <h2 className="text-4xl pb-2">Task List</h2>
-
-      <Accordion collapseAll className="">
-        {taskList.map((task) => (
-          <AccordionPanel key={task.id}>
-            <AccordionTitle>
-              {task.title}
-              <br /> {task.due_date} {task.due_time}
-            </AccordionTitle>
-            <AccordionContent>
-              <Button>View task</Button>
-            </AccordionContent>
-          </AccordionPanel>
-        ))}
-
-        {/* <AccordionPanel>
-          <AccordionTitle>Is there a Figma file available?</AccordionTitle>
-          <AccordionContent>
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              Flowbite is first conceptualized and designed using the Figma
-              software so everything you see in the library has a design
-              equivalent in our Figma file.
-            </p>
-            <p className="text-gray-500 dark:text-gray-400">
-              Check out the
-              <a
-                href="https://flowbite.com/figma/"
-                className="text-cyan-600 hover:underline dark:text-cyan-500"
-              >
-                Figma design system
-              </a>
-              based on the utility classes from Tailwind CSS and components from
-              Flowbite.
-            </p>
-          </AccordionContent>
-        </AccordionPanel>
-        <AccordionPanel>
-          <AccordionTitle>
-            What are the differences between Flowbite and Tailwind UI?
-          </AccordionTitle>
-          <AccordionContent>
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              The main difference is that the core components from Flowbite are
-              open source under the MIT license, whereas Tailwind UI is a paid
-              product. Another difference is that Flowbite relies on smaller and
-              standalone components, whereas Tailwind UI offers sections of
-              pages.
-            </p>
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              However, we actually recommend using both Flowbite, Flowbite Pro,
-              and even Tailwind UI as there is no technical reason stopping you
-              from using the best of two worlds.
-            </p>
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              Learn more about these technologies:
-            </p>
-            <ul className="list-disc pl-5 text-gray-500 dark:text-gray-400">
-              <li>
-                <a
-                  href="https://flowbite.com/pro/"
-                  className="text-cyan-600 hover:underline dark:text-cyan-500"
-                >
-                  Flowbite Pro
-                </a>
+      <Card className="max-w-sm">
+        <div className="flow-root">
+          <ol className="divide-y divide-gray-200 dark:divide-gray-700">
+            {taskList.map((task) => (
+              <li className="py-3 sm:py-4" key={task.id}>
+                <div className="flex items-center space-x-4">
+                  <div className="shrink-0"></div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                      {task.title}
+                    </p>
+                    <p className="truncate text-sm text-gray-500 dark:text-gray-400">
+                      {task.due_date}
+                      {task.due_time}
+                    </p>
+                  </div>
+                  <div className="inline-flex items-center">
+                    <Button>View</Button>
+                  </div>
+                </div>
               </li>
-              <li>
-                <a
-                  href="https://tailwindui.com/"
-                  rel="nofollow"
-                  className="text-cyan-600 hover:underline dark:text-cyan-500"
-                >
-                  Tailwind UI
-                </a>
-              </li>
-            </ul>
-          </AccordionContent>
-        </AccordionPanel> */}
-      </Accordion>
+            ))}
+          </ol>
+        </div>
+      </Card>
     </div>
   );
 }
