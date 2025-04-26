@@ -8,7 +8,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import { SuccessToast } from "../functions/toasts";
 import DeleteModal from "./DeleteModal";
 
-function TaskDetail({ className = "", taskId }) {
+function TaskDetail({ className = "", taskId, onEditTask }) {
   const [taskDetail, setTaskDetail] = useState({
     title: "",
     description: "",
@@ -117,7 +117,12 @@ function TaskDetail({ className = "", taskId }) {
             </div>
 
             <div className="flex flex-row gap-2 justify-evenly">
-              <Button color="alternative">Edit</Button>
+              <Button
+                color="alternative"
+                onClick={() => onEditTask(taskDetail)}
+              >
+                Edit
+              </Button>
               <Button color="red" onClick={() => setShowDeleteModal(true)}>
                 Delete
               </Button>
