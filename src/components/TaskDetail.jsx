@@ -30,14 +30,17 @@ function TaskDetail() {
   }, []);
 
   return (
-    <Card className="max-w-sm">
-      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Noteworthy technology acquisitions 2021
+    <Card className="max-w-[300px]">
+      <h5 className="text-2xl font-bold tracking-tight text-gray-900">
+        {title}
       </h5>
-      <p className="font-normal text-gray-700 dark:text-gray-400">
-        Here are the biggest enterprise technology acquisitions of 2021 so far,
-        in reverse chronological order.
+      <p className="font-normal text-gray-700">
+        {description ? description : "No description available"}
       </p>
+      <p>
+        {due_date} {due_time}
+      </p>
+      <p> {status ? "Completed" : "Incomplete"} </p>
       <div className="flex flex-row">
         <Button color="alternative">Edit</Button>
         <Button color="red">Delete</Button>
