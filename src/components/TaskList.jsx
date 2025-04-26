@@ -1,11 +1,5 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionPanel,
-  AccordionTitle,
-  Button,
-  Card,
-} from "flowbite-react";
+import { Button, Card } from "flowbite-react";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 import React, { useState, useEffect } from "react";
 import api from "../api/axiosDefaults";
@@ -13,6 +7,9 @@ import { formatDate } from "../functions/dateFormats";
 
 function TaskList({ className = "" }) {
   const [taskList, setTaskList] = useState([]);
+
+  // used to compare current date to task due date
+  const now = new Date();
 
   useEffect(() => {
     const handleMount = async () => {
@@ -40,13 +37,23 @@ function TaskList({ className = "" }) {
             {taskList.map((task) => {
               // Takes due date and formats it before displaying in each task
               const formattedDate = formatDate(task.due_date);
+              //   Convert due date to date format to check if task is overdue
+              const dueDate = new Date(task.due_date);
+              //   over due comparison
+              const isOverdue = now > dueDate;
               return (
                 <li className="py-3" key={task.id}>
                   <div className="flex items-center space-x-4">
                     <div className="shrink-0"></div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-lg font-medium text-gray-900">
-                        {task.title}
+                        {task.title}{" "}
+                        {!task.status && isOverdue && (
+                          <span className="flex items-center font-light text-base text-red-500 gap-1">
+                            <RiErrorWarningLine />
+                            Overdue
+                          </span>
+                        )}
                       </p>
                       <p className="truncate text-sm text-gray-600">
                         {formattedDate} {task.due_time}
