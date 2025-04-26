@@ -8,7 +8,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import { SuccessToast } from "../functions/toasts";
 import DeleteModal from "./DeleteModal";
 
-function TaskDetail({ className = "", taskId, onEditTask }) {
+function TaskDetail({ className = "", taskId, onEditTask, triggerRefresh }) {
   const [taskDetail, setTaskDetail] = useState({
     title: "",
     description: "",
@@ -68,9 +68,11 @@ function TaskDetail({ className = "", taskId, onEditTask }) {
       await api.delete(`/tasks/${taskId}/`);
       SuccessToast("Task deleted!");
       setShowDeleteModal(false);
+      // Refreshes component after task deletion
+      triggerRefresh();
       // Will refresh page after deletion so task list is updated
       setTimeout(() => {
-        window.location.reload();
+        onEditTask(null);
       }, 1000);
     } catch (error) {
       console.log(error);
