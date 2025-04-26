@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import api from "../api/axiosDefaults";
 import { formatDate } from "../functions/dateFormats";
 
-function TaskDetail({ className = "" }) {
+function TaskDetail({ className = "", taskId }) {
   const [taskDetail, setTaskDetail] = useState({
     title: "",
     description: "",
@@ -15,20 +15,24 @@ function TaskDetail({ className = "" }) {
   const { title, description, due_date, due_time, status } = taskDetail;
 
   useEffect(() => {
-    const handleMount = async () => {
-      try {
-        const { data } = await api.get(`/tasks/1/`);
-        setTaskDetail(data);
-        // setIsLoaded(true);
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    if (taskId) {
+      const handleMount = async () => {
+        try {
+          const { data } = await api.get(`/tasks/${taskId}/`);
+          setTaskDetail(data);
+          // setIsLoaded(true);
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      handleMount();
+    }
 
     // setIsLoaded(false);
-    handleMount();
-  }, []);
+  }, [taskId]);
+
+  if (!taskDetail) return <p>Select a task to view details</p>;
 
   const formattedDate = formatDate(due_date);
 
