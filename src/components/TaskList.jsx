@@ -36,16 +36,17 @@ function TaskList({ className = "" }) {
         <div className="flow-root text-left">
           <ol className="divide-y divide-gray-200 dark:divide-gray-700">
             {taskList.map((task) => {
+              // Takes due date and formats it before displaying in each task
               const formattedDate = formatDate(task.due_date);
               return (
                 <li className="py-3" key={task.id}>
                   <div className="flex items-center space-x-4">
                     <div className="shrink-0"></div>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-lg font-medium text-gray-900 dark:text-white">
+                      <p className="truncate text-lg font-medium text-gray-900">
                         {task.title}
                       </p>
-                      <p className="truncate text-sm text-gray-500 dark:text-gray-400">
+                      <p className="truncate text-sm text-gray-600">
                         {formattedDate} {task.due_time}
                       </p>
                     </div>
