@@ -9,6 +9,7 @@ import {
 
 import React, { useState, useEffect } from "react";
 import api from "../api/axiosDefaults";
+import { formatDate } from "../functions/dateFormats";
 
 function TaskList({ className = "" }) {
   const [taskList, setTaskList] = useState([]);
@@ -34,24 +35,27 @@ function TaskList({ className = "" }) {
       <Card className="max-w-sm">
         <div className="flow-root text-left">
           <ol className="divide-y divide-gray-200 dark:divide-gray-700">
-            {taskList.map((task) => (
-              <li className="py-3" key={task.id}>
-                <div className="flex items-center space-x-4">
-                  <div className="shrink-0"></div>
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-lg font-medium text-gray-900 dark:text-white">
-                      {task.title}
-                    </p>
-                    <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                      {task.due_date} {task.due_time}
-                    </p>
+            {taskList.map((task) => {
+              const formattedDate = formatDate(task.due_date);
+              return (
+                <li className="py-3" key={task.id}>
+                  <div className="flex items-center space-x-4">
+                    <div className="shrink-0"></div>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-lg font-medium text-gray-900 dark:text-white">
+                        {task.title}
+                      </p>
+                      <p className="truncate text-sm text-gray-500 dark:text-gray-400">
+                        {formattedDate} {task.due_time}
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center">
+                      <Button>View</Button>
+                    </div>
                   </div>
-                  <div className="inline-flex items-center">
-                    <Button>View</Button>
-                  </div>
-                </div>
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ol>
         </div>
       </Card>
