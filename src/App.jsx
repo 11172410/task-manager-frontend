@@ -14,6 +14,7 @@ const App = () => {
 
   // Stores id of selected task from task list to pass to taskDetail component
   const [selectedTaskId, setSelectedTaskId] = useState(null);
+  const [taskToEdit, setTaskToEdit] = useState(null);
 
   return (
     <>
@@ -23,10 +24,18 @@ const App = () => {
       </h1>
 
       <div className="flex flex-row gap-8 justify-center-safe">
-        <TaskForm className="w-1/3" />
+        <TaskForm
+          className="w-1/3"
+          taskToEdit={taskToEdit}
+          clearTaskToEdit={() => setTaskToEdit(null)}
+        />
         <TaskList className="w-1/3" onTaskClick={setSelectedTaskId} />
         {selectedTaskId && (
-          <TaskDetail className="w-1/3" taskId={selectedTaskId} />
+          <TaskDetail
+            className="w-1/3"
+            taskId={selectedTaskId}
+            onEditTask={(taskData) => setTaskToEdit(taskData)}
+          />
         )}
       </div>
     </>
