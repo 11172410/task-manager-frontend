@@ -6,7 +6,7 @@ import api from "../api/axiosDefaults";
 import { formatDate } from "../functions/dateFormats";
 import LoadingSpinner from "./LoadingSpinner";
 
-function TaskList({ className = "" }) {
+function TaskList({ className = "", onTaskClick }) {
   const [taskList, setTaskList] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -65,7 +65,12 @@ function TaskList({ className = "" }) {
                         </p>
                       </div>
                       <div className="inline-flex items-center">
-                        <Button className="bg-blue-500">View</Button>
+                        <Button
+                          className="bg-blue-500"
+                          onClick={() => onTaskClick(task.id)}
+                        >
+                          View
+                        </Button>
                       </div>
                     </div>
                   </li>
