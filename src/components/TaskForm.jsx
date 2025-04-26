@@ -17,7 +17,7 @@ import {
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaSave } from "react-icons/fa";
 import { HiInformationCircle } from "react-icons/hi";
 
 function TaskForm({ className = "", taskToEdit, clearTaskToEdit }) {
@@ -85,8 +85,15 @@ function TaskForm({ className = "", taskToEdit, clearTaskToEdit }) {
 
     try {
       setIsCreating(true);
-      await api.post("/tasks/", formData);
-      SuccessToast("Task created!");
+
+      if (taskToEdit) {
+        await api.patch(`/tasks/${taskToEdit.id}/`, formData);
+        SuccessToast("Task updated!");
+      } else {
+        await api.post("/tasks/", formData);
+        SuccessToast("Task created!");
+      }
+
       setIsCreating(false);
       // Clears form once task is created
       setTaskData({
@@ -97,6 +104,7 @@ function TaskForm({ className = "", taskToEdit, clearTaskToEdit }) {
       });
       // Clears any errors on form once submitted
       setError({});
+      if (clearTaskToEdit) clearTaskToEdit();
     } catch (error) {
       setError(error.response?.data);
       console.log(error);
@@ -109,7 +117,7 @@ function TaskForm({ className = "", taskToEdit, clearTaskToEdit }) {
       className={`flex max-w-md flex-col gap-4 bg-neutral-100 border border-stone-200 p-8 rounded-md shadow-sm ${className}`}
       onSubmit={handleSubmit}
     >
-      <h1 className="text-3xl">Create Task</h1>
+      <h1 className="text-3xl">{taskToEdit ? "Edit Task" : "Create Task"}</h1>
       <div>
         <div className="mb-2 block text-left">
           <Label htmlFor="title" className="text-xl">
@@ -123,7 +131,6 @@ function TaskForm({ className = "", taskToEdit, clearTaskToEdit }) {
           name="title"
           value={title}
           onChange={handleChange}
-          // required
           shadow
         />
       </div>
@@ -201,18 +208,26 @@ function TaskForm({ className = "", taskToEdit, clearTaskToEdit }) {
       <div className="flex justify-center">
         <Button
           type="submit"
-          className="bg-green-500 text-lg w-3xs w-[180px] text-center"
+          className={`${
+            taskToEdit ? "bg-blue-500" : "bg-green-500"
+          } text-lg w-3xs w-[180px] text-center`}
           pill
         >
-          {" "}
           {isCreating ? (
             <>
-              <Spinner size="sm" className="me-3" light /> "Creating..."
+              <Spinner size="sm" className="me-3" light />{" "}
+              {taskToEdit ? "Updating..." : "Creating..."}
             </>
           ) : (
-            "Create"
+            <>
+              {taskToEdit ? "Update" : "Create"}
+              {taskToEdit ? (
+                <FaSave className="ml-2 h-5 w-5" />
+              ) : (
+                <FaPlus className="ml-2 h-5 w-5" />
+              )}
+            </>
           )}
-          <FaPlus className="ml-2 h-5 w-5" />
         </Button>
       </div>
     </form>
