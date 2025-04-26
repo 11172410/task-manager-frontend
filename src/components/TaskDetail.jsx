@@ -36,6 +36,7 @@ function TaskDetail({ className = "", taskId }) {
     setIsLoaded(false);
   }, [taskId]);
 
+  // Instant UI update while the API awaits the patch request
   const handleCheckboxChange = async () => {
     const newStatus = !status;
     setTaskDetail((prevDetail) => ({
@@ -43,7 +44,7 @@ function TaskDetail({ className = "", taskId }) {
       status: newStatus,
     }));
     try {
-      await api.patch(`/tasks/${taskId}`, {
+      await api.patch(`/tasks/${taskId}/`, {
         status: newStatus,
       });
     } catch (error) {
@@ -74,6 +75,19 @@ function TaskDetail({ className = "", taskId }) {
               {formattedDate} | {due_time}
             </span>
           </p>
+          <div className="flex items-center gap-2 py-2">
+            <Checkbox
+              id="task-status"
+              checked={status}
+              onChange={handleCheckboxChange}
+            />
+            <label
+              htmlFor="task-status"
+              className="text-sm font-medium text-gray-700"
+            >
+              {status ? "Completed" : "Mark as Completed"}
+            </label>
+          </div>
           <p className={`${status ? "text-green-500" : "text-red-500"}`}>
             {" "}
             {status ? "Completed" : "Incomplete"}{" "}
