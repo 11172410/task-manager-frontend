@@ -11,7 +11,7 @@ import React, { useState, useEffect } from "react";
 import api from "../api/axiosDefaults";
 
 function TaskList({ className = "" }) {
-  const [taskList, setTaskList] = useState({ results: [] });
+  const [taskList, setTaskList] = useState([]);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -32,19 +32,18 @@ function TaskList({ className = "" }) {
     <div className={` ${className}`}>
       <h2 className="text-4xl pb-2">Task List</h2>
       <Card className="max-w-sm">
-        <div className="flow-root">
+        <div className="flow-root text-left">
           <ol className="divide-y divide-gray-200 dark:divide-gray-700">
             {taskList.map((task) => (
-              <li className="py-3 sm:py-4" key={task.id}>
+              <li className="py-3" key={task.id}>
                 <div className="flex items-center space-x-4">
                   <div className="shrink-0"></div>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                    <p className="truncate text-lg font-medium text-gray-900 dark:text-white">
                       {task.title}
                     </p>
                     <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                      {task.due_date}
-                      {task.due_time}
+                      {task.due_date} {task.due_time}
                     </p>
                   </div>
                   <div className="inline-flex items-center">
