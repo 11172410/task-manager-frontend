@@ -1,5 +1,5 @@
 import api from "../api/axiosDefaults";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Custom function import
 import { SuccessToast } from "../functions/toasts";
@@ -20,7 +20,7 @@ import "react-clock/dist/Clock.css";
 import { FaPlus } from "react-icons/fa";
 import { HiInformationCircle } from "react-icons/hi";
 
-function TaskForm({ className = "" }) {
+function TaskForm({ className = "", taskToEdit, clearTaskToEdit }) {
   const [isCreating, setIsCreating] = useState(false);
   const [error, setError] = useState({});
   const [taskData, setTaskData] = useState({
@@ -30,6 +30,19 @@ function TaskForm({ className = "" }) {
     due_time: "",
   });
   const { title, description, due_date, due_time } = taskData;
+
+  useEffect(() => {
+    if (taskToEdit) {
+      setTaskData({
+        title: taskToEdit.title || "",
+        description: taskToEdit.description || "",
+        due_date: taskToEdit.due_date
+          ? new Date(taskToEdit.due_date)
+          : new Date(),
+        due_time: taskToEdit.due_time || "",
+      });
+    }
+  }, [taskToEdit]);
 
   // Allows changing of input fields values by creating a copy
   // of the previous data before updating
