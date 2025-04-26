@@ -63,10 +63,6 @@ function TaskDetail({ className = "", taskId }) {
     }
   };
 
-  const showModal = () => {
-    setShowDeleteModal(true);
-  };
-
   const handleDelete = async () => {
     try {
       await api.delete(`/tasks/${taskId}/`);
