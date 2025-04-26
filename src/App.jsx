@@ -17,8 +17,11 @@ const App = () => {
       <h1 className="font-sans text-4xl font-bold tracking-wide pt-4 pb-8">
         Task Manager
       </h1>
-      <TaskForm />
-      <TaskList />
+
+      <div className="flex flex-row gap-8 justify-center-safe">
+        <TaskForm className="w-64" />
+        <TaskList />
+      </div>
     </>
   );
 };
