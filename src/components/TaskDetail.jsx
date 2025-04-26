@@ -1,4 +1,5 @@
 import { Button, Card, Checkbox, Label } from "flowbite-react";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 import React, { useState, useEffect } from "react";
 import api from "../api/axiosDefaults";
@@ -17,6 +18,9 @@ function TaskDetail({ className = "", taskId }) {
   const { title, description, due_date, due_time, status } = taskDetail;
 
   const formattedDate = formatDate(due_date);
+  const now = new Date();
+  const dueDateObj = new Date(due_date);
+  const isOverdue = now > dueDateObj;
 
   useEffect(() => {
     if (taskId) {
@@ -62,7 +66,13 @@ function TaskDetail({ className = "", taskId }) {
       {isLoaded ? (
         <>
           <h5 className="text-2xl font-bold tracking-tight text-gray-900">
-            {title}
+            {title}{" "}
+            {!status && isOverdue && (
+              <span className="flex items-center font-light text-base text-red-500 gap-1 justify-center">
+                <RiErrorWarningLine />
+                Overdue
+              </span>
+            )}
           </h5>
           <p
             className={`font-normal ${description ? "text-gray-700" : "text-gray-400"}`}
