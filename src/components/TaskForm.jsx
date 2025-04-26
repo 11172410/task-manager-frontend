@@ -20,7 +20,12 @@ import "react-clock/dist/Clock.css";
 import { FaPlus, FaSave } from "react-icons/fa";
 import { HiInformationCircle } from "react-icons/hi";
 
-function TaskForm({ className = "", taskToEdit, clearTaskToEdit }) {
+function TaskForm({
+  className = "",
+  taskToEdit,
+  clearTaskToEdit,
+  triggerRefresh,
+}) {
   const [isCreating, setIsCreating] = useState(false);
   const [error, setError] = useState({});
   const [taskData, setTaskData] = useState({
@@ -89,9 +94,11 @@ function TaskForm({ className = "", taskToEdit, clearTaskToEdit }) {
       if (taskToEdit) {
         await api.patch(`/tasks/${taskToEdit.id}/`, formData);
         SuccessToast("Task updated!");
+        triggerRefresh();
       } else {
         await api.post("/tasks/", formData);
         SuccessToast("Task created!");
+        triggerRefresh();
       }
 
       setIsCreating(false);
