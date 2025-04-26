@@ -10,7 +10,7 @@ import React from "react";
 function TaskList({ className = "" }) {
   return (
     <div className={` ${className}`}>
-      <h2>Task List</h2>
+      <h2 className="text-4xl pb-2">Task List</h2>
       <Accordion collapseAll className="">
         <AccordionPanel>
           <AccordionTitle>What is Flowbite?</AccordionTitle>
