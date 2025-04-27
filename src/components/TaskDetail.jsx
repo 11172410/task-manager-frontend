@@ -81,7 +81,7 @@ function TaskDetail({ className = "", taskId, onEditTask, triggerRefresh }) {
 
   return (
     <>
-      <Card className="max-w-sm">
+      <Card className="max-w-md max-h-80">
         {isLoaded ? (
           <>
             <h5 className="text-2xl font-bold tracking-tight text-gray-900">
