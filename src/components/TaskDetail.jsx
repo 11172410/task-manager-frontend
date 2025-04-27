@@ -104,7 +104,7 @@ function TaskDetail({ className = "", taskId, onEditTask, triggerRefresh }) {
                 {formattedDate} | {due_time}
               </span>
             </p>
-            <div className="flex items-center gap-2 py-2">
+            <div className="flex items-center gap-2 py-2 pl-20">
               <Checkbox
                 id="task-status"
                 checked={status}
