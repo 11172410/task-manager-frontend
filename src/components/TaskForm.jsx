@@ -200,12 +200,13 @@ function TaskForm({
         </div>
         {/* Prevents user from picking a date previous to the current date */}
         <TimePicker
-          // required
+          id="due_time"
           hourPlaceholder="00"
           minutePlaceholder="00"
           name="due_time"
           value={due_time}
           onChange={handleTimeChange}
+          format="HH:mm"
         />
       </div>
       {/* Error messages for due_time field */}
