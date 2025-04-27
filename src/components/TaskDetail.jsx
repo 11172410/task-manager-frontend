@@ -1,5 +1,6 @@
-import { Button, Card, Checkbox, Label } from "flowbite-react";
+import { Button, Card, Checkbox } from "flowbite-react";
 import { RiErrorWarningLine } from "react-icons/ri";
+import { IoIosClose } from "react-icons/io";
 
 import React, { useState, useEffect } from "react";
 import api from "../api/axiosDefaults";
@@ -81,9 +82,16 @@ function TaskDetail({ className = "", taskId, onEditTask, triggerRefresh }) {
 
   return (
     <>
-      <Card className={`${className}`}>
+      <Card className={`relative ${className}`}>
         {isLoaded ? (
           <>
+            {/* Close Button */}
+            <div className="absolute top-2 right-2">
+              <Button outline size="sm" iconOnly color="dark">
+                <IoIosClose className="h-5 w-5" />
+              </Button>
+            </div>
+
             <h5 className="text-2xl font-bold tracking-tight text-gray-900">
               {title}{" "}
               {!status && isOverdue && (
@@ -93,6 +101,7 @@ function TaskDetail({ className = "", taskId, onEditTask, triggerRefresh }) {
                 </span>
               )}
             </h5>
+
             <p
               className={`font-normal ${description ? "text-gray-700" : "text-gray-400"}`}
             >
