@@ -18,11 +18,11 @@ const App = () => {
   return (
     <>
       <ToastContainer />
-      <h1 className="font-sans text-4xl font-bold tracking-wide pt-4 pb-8">
+      <h1 className="font-sans text-5xl font-bold tracking-wide pt-4 pb-8 text-blue-700">
         Task Manager
       </h1>
 
-      <div className="flex flex-row gap-8 justify-center-safe">
+      <div className="flex flex-row gap-8 justify-center-safe border border-gray-300 p-8 shadow-lg rounded-sm bg-stone-200/65">
         <TaskForm
           className="w-1/3"
           taskToEdit={taskToEdit}
