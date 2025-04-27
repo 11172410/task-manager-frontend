@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { expect, vi } from "vitest";
+import { beforeEach, expect, vi } from "vitest";
 import React from "react";
 import TaskDetail from "../../components/TaskDetail";
 
@@ -21,6 +21,11 @@ describe("TaskDetail", () => {
     due_time: "00:00",
     status: false,
   };
+
+  //   Clears previous mock calls to avoid unexpected behaviour
+  beforeEach(() => {
+    api.patch.mockClear();
+  });
 
   it("should render the task information", async () => {
     api.get.mockResolvedValue({ data: task });
@@ -77,6 +82,35 @@ describe("TaskDetail", () => {
       status: false,
     });
     // Check that the checkbox is now unchecked again
+    expect(checkbox).not.toBeChecked();
+  });
+
+  it("should revert the UI if API patch fails", async () => {
+    // Mock the API response for patch request failure
+    api.patch.mockRejectedValue(new Error("API Error"));
+
+    render(
+      <TaskDetail
+        taskId={task.id}
+        taskDetail={task}
+        onEditTask={vi.fn()}
+        triggerRefresh={vi.fn()}
+        onCloseTask={vi.fn()}
+      />,
+    );
+
+    // Loads task detail first before attempting to complete task
+    await waitFor(() => expect(screen.getByText("test 1")).toBeInTheDocument());
+
+    // Get the checkbox element
+    const checkbox = screen.getByRole("checkbox");
+    // Initially, the task status is false, so the checkbox should be unchecked
+    expect(checkbox).not.toBeChecked();
+    // Simulate clicking the checkbox to check it
+    fireEvent.click(checkbox);
+    // Wait for the mock API call to be made
+    await waitFor(() => expect(api.patch).toHaveBeenCalledTimes(1));
+    // Check that the checkbox is unchecked again because the patch failed
     expect(checkbox).not.toBeChecked();
   });
 });
