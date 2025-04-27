@@ -29,3 +29,13 @@ Two reusable components were created for this application - a delete modal and a
 The delete modal appears when the user clicks to delete a task, asking the user to confirm their actions. Clicking 'Yes, delete' inside the modal will create the API call to delete the selected task.
 
 The loading spinner enhances the user experience by showing that the user's tasks are currently being fetched, rather than seemingly displaying a non-reactive application.
+
+## Frameworks, libraries and dependencies
+
+The task manager application was created with Vite as the build tool, using **React 19.0.10**. **Tailwind CSS 4.1.4** was used for quick and efficient styling of the app, alongside **Flowbite React 0.11.7** for reusable UI components. Below are a list of the other libraries used:
+
+- **axios 1.9.0** - used to create and fetch API calls from the API backend.
+- **react-icons** - used for adding icons to the UI
+- **react-time-picker 7.0.0** - created the timepicker form input which was unavailable in Flowbite React
+- **react-toastify 11.0.5** - library with pre-built toast UI and functionality, used to call toasts for user-driven events
+- **jest-dom 6.6.3**, **testing-library/react** and **vitest 3.1.2** - libraries used to create test suites for unit testing
