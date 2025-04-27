@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import api from "../api/axiosDefaults";
 import { formatDate } from "../functions/dateFormats";
 import LoadingSpinner from "./LoadingSpinner";
+import { WarningToast } from "../functions/toasts";
 
 function TaskList({ className = "", onTaskClick, refreshTrigger }) {
   const [taskList, setTaskList] = useState([]);
@@ -20,7 +21,7 @@ function TaskList({ className = "", onTaskClick, refreshTrigger }) {
         setTaskList(data);
         setIsLoaded(true);
       } catch (error) {
-        console.log("there was an error", error);
+        WarningToast("There was an error loading tasks. Please try again.");
       }
     };
 

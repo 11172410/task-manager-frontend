@@ -2,7 +2,7 @@ import api from "../api/axiosDefaults";
 import React, { useEffect, useState } from "react";
 
 // Custom function import
-import { SuccessToast } from "../functions/toasts";
+import { SuccessToast, WarningToast } from "../functions/toasts";
 
 // Styling and Flowbite imports
 import {
@@ -114,7 +114,9 @@ function TaskForm({
       if (clearTaskToEdit) clearTaskToEdit();
     } catch (error) {
       setError(error.response?.data);
-      console.log(error);
+      WarningToast("There was a server error. Please try again.");
+      if (error.response.status !== 400) {
+      }
       setIsCreating(false);
     }
   };

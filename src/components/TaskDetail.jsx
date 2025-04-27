@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import api from "../api/axiosDefaults";
 import { formatDate } from "../functions/dateFormats";
 import LoadingSpinner from "./LoadingSpinner";
-import { SuccessToast } from "../functions/toasts";
+import { SuccessToast, WarningToast } from "../functions/toasts";
 import DeleteModal from "./DeleteModal";
 
 function TaskDetail({
@@ -40,7 +40,9 @@ function TaskDetail({
           setTaskDetail(data);
           setIsLoaded(true);
         } catch (error) {
-          console.log(error);
+          WarningToast(
+            "There was an error loading your task. Please try again.",
+          );
         }
       };
       handleMount();
@@ -61,7 +63,7 @@ function TaskDetail({
         status: newStatus,
       });
     } catch (error) {
-      console.log("Error updating status:", error);
+      WarningToast("There was an error updating your task. Please try again.");
       // If API fails to update task, revert UI
       setTaskDetail((prevDetail) => ({
         ...prevDetail,
@@ -82,7 +84,7 @@ function TaskDetail({
         onEditTask(null);
       }, 1000);
     } catch (error) {
-      console.log(error);
+      WarningToast("There was an error deleting your task. Please try again.");
     }
   };
 
