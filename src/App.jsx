@@ -36,7 +36,7 @@ const App = () => {
         />
         {selectedTaskId && (
           <TaskDetail
-            className="w-1/3"
+            className="w-1/3 max-h-64"
             taskId={selectedTaskId}
             onEditTask={(taskData) => setTaskToEdit(taskData)}
             triggerRefresh={triggerRefresh}
