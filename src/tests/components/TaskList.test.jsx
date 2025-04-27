@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import TaskList from "../../components/TaskList";
 import React from "react";
 import { expect, vi } from "vitest";
@@ -46,5 +46,18 @@ describe("TaskList", () => {
     // 2) await the buttons to show up:
     const viewButtons = await screen.findAllByRole("button", { name: /view/i });
     expect(viewButtons).toHaveLength(tasks.length);
+  });
+
+  it("should call onTaskClick with correct task id when clicking view button", async () => {
+    api.get.mockResolvedValue({ data: tasks });
+
+    const onTaskClickMock = vi.fn();
+    render(<TaskList onTaskClick={onTaskClickMock} refreshTrigger={false} />);
+
+    const viewButtons = await screen.findAllByRole("button", { name: /view/i });
+    fireEvent.click(viewButtons[0]);
+
+    // Clicking the first view button for task 1 should produce id 1
+    expect(onTaskClickMock).toHaveBeenCalledWith(1);
   });
 });
