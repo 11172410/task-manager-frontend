@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { expect, vi } from "vitest";
 import React from "react";
 import TaskDetail from "../../components/TaskDetail";
 
@@ -6,11 +7,11 @@ import TaskDetail from "../../components/TaskDetail";
 vi.mock("../../api/axiosDefaults", () => ({
   default: {
     get: vi.fn(),
+    patch: vi.fn(),
   },
 }));
 
 import api from "../../api/axiosDefaults";
-import { expect, vi } from "vitest";
 
 describe("TaskDetail", () => {
   const task = {
@@ -18,6 +19,7 @@ describe("TaskDetail", () => {
     title: "test 1",
     due_date: "2025-05-01",
     due_time: "00:00",
+    status: false,
   };
 
   it("should render the task information", async () => {
@@ -29,5 +31,52 @@ describe("TaskDetail", () => {
       await screen.findByText("No description available"),
     ).toBeInTheDocument();
     expect(await screen.findByText("1 May 2025 | 00:00")).toBeInTheDocument();
+  });
+
+  it("should call the API with patch an update UI when checkbox is checked and unchecked", async () => {
+    // Simulates patch request when task is marked completed
+    api.patch.mockResolvedValue({ data: { ...task, status: true } });
+
+    render(
+      <TaskDetail
+        taskId={task.id}
+        taskDetail={task}
+        onEditTask={vi.fn()}
+        triggerRefresh={vi.fn()}
+        onCloseTask={vi.fn()}
+      />,
+    );
+
+    // Loads task detail first before attempting to complete task
+    await waitFor(() => expect(screen.getByText("test 1")).toBeInTheDocument());
+
+    // Gets checkbox and expects it to be unchecked initially as status is false
+    const checkbox = screen.getByRole("checkbox");
+    expect(checkbox).not.toBeChecked();
+
+    // Simulate checking the box
+    fireEvent.click(checkbox);
+
+    // Wait for the api patch to call to be made
+    await waitFor(() => {
+      expect(api.patch).toHaveBeenCalledTimes(1);
+    });
+    // Set the status of the selected task to true when checking teh box and send it to the api
+    expect(api.patch).toHaveBeenCalledWith(`/tasks/${task.id}/`, {
+      status: true,
+    });
+    // Expect the checkbox to now be checked
+    expect(checkbox).toBeChecked();
+
+    // Simulate unchecking the box again
+    fireEvent.click(checkbox);
+    // Wait for the mock API call to be made again
+    await waitFor(() => expect(api.patch).toHaveBeenCalledTimes(2));
+    // Check if the API was called with the correct payload (status: false)
+    expect(api.patch).toHaveBeenCalledWith(`/tasks/${task.id}/`, {
+      status: false,
+    });
+    // Check that the checkbox is now unchecked again
+    expect(checkbox).not.toBeChecked();
   });
 });
