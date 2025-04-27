@@ -13,3 +13,17 @@ export const SuccessToast = (message) => {
     transition: Bounce,
   });
 };
+
+export const WarningToast = (message) => {
+  toast.warn(message, {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+  });
+};
