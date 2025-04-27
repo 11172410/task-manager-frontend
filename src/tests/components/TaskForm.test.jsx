@@ -9,8 +9,6 @@ vi.mock("../../api/axiosDefaults", () => ({
   },
 }));
 
-import api from "../../api/axiosDefaults";
-
 describe("TaskForm", () => {
   it("should render empty fields when creating a task", () => {
     render(<TaskForm triggerRefresh={vi.fn()} clearTaskToEdit={vi.fn()} />);
@@ -69,7 +67,5 @@ describe("TaskForm", () => {
 
     expect(titleInput).toHaveValue(mockTask.title);
     expect(descriptionInput).toHaveValue(mockTask.description);
-
-    screen.debug();
   });
 });
