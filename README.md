@@ -21,3 +21,11 @@ Completed tasks in the list have a different UI. All tasks are listed in due dat
 In the task detail card, the user is presented with the option to complete the task by clicking a checkbox. The user can also edit the task, which will automatically fill the task form with the relevant information. Finally, the user can delete the task.
 
 All of the above user interactions will display user validation in a form of a toast, telling the user if the action was successfully completed, or an error occured.
+
+### Reusable Components
+
+Two reusable components were created for this application - a delete modal and a loading spinner.
+
+The delete modal appears when the user clicks to delete a task, asking the user to confirm their actions. Clicking 'Yes, delete' inside the modal will create the API call to delete the selected task.
+
+The loading spinner enhances the user experience by showing that the user's tasks are currently being fetched, rather than seemingly displaying a non-reactive application.
