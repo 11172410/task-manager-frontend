@@ -39,3 +39,7 @@ The task manager application was created with Vite as the build tool, using **Re
 - **react-time-picker 7.0.0** - created the timepicker form input which was unavailable in Flowbite React
 - **react-toastify 11.0.5** - library with pre-built toast UI and functionality, used to call toasts for user-driven events
 - **jest-dom 6.6.3**, **testing-library/react** and **vitest 3.1.2** - libraries used to create test suites for unit testing
+
+## Testing
+
+Unit tests were created inside the **tests** folder, split into _component_ tests and _function_ tests. **Vitest** was the main testing library used to create the test suites. To run tests, please use the command `npm test` or `npm run test`. **Vitest/ui** is also downloaded to allow viewing tests directly in the browser. Please run the command `npm run test:ui` to open the browser-based test runner, which will launch in a new tab.
