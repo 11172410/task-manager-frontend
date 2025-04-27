@@ -158,7 +158,7 @@ function TaskForm({
           </Label>
         </div>
         <Textarea
-          id="comment"
+          id="description"
           placeholder="Description is optional"
           rows={4}
           name="description"
