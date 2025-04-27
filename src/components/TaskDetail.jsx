@@ -9,7 +9,13 @@ import LoadingSpinner from "./LoadingSpinner";
 import { SuccessToast } from "../functions/toasts";
 import DeleteModal from "./DeleteModal";
 
-function TaskDetail({ className = "", taskId, onEditTask, triggerRefresh }) {
+function TaskDetail({
+  className = "",
+  taskId,
+  onEditTask,
+  triggerRefresh,
+  onCloseTask,
+}) {
   const [taskDetail, setTaskDetail] = useState({
     title: "",
     description: "",
@@ -87,7 +93,13 @@ function TaskDetail({ className = "", taskId, onEditTask, triggerRefresh }) {
           <>
             {/* Close Button */}
             <div className="absolute top-2 right-2">
-              <Button outline size="sm" iconOnly color="dark">
+              <Button
+                outline
+                size="sm"
+                iconOnly
+                color="dark"
+                onClick={onCloseTask}
+              >
                 <IoIosClose className="h-5 w-5" />
               </Button>
             </div>

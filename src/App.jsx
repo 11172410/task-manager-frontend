@@ -40,6 +40,7 @@ const App = () => {
             taskId={selectedTaskId}
             onEditTask={(taskData) => setTaskToEdit(taskData)}
             triggerRefresh={triggerRefresh}
+            onCloseTask={() => setSelectedTaskId(null)}
           />
         )}
       </div>
