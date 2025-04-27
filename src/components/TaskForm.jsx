@@ -169,12 +169,13 @@ function TaskForm({
 
       <div>
         <div className="mb-2 block text-left">
-          <Label htmlFor="description" className="text-xl">
+          <Label htmlFor="due_date" className="text-xl">
             Due Date
           </Label>
         </div>
         {/* Prevents user from picking a date previous to the current date */}
         <Datepicker
+          id="due_date"
           minDate={new Date()}
           title="Due date"
           name="due_date"
@@ -193,7 +194,7 @@ function TaskForm({
 
       <div className="text-left">
         <div className="mb-2 block text-left">
-          <Label htmlFor="description" className="text-xl">
+          <Label htmlFor="due_time" className="text-xl">
             Time
           </Label>
         </div>
